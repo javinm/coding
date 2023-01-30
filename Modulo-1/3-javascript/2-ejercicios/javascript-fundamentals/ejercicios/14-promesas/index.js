@@ -1,8 +1,8 @@
 // 1. Asigna a la variable "promise" una promesa que se resuelva con el string "me he resuelto!"
-var promise;
+var promise = new Promise((resolve, reject) => resolve('me he resuelto'));
 
 // 2. Asigna a la variable "promiseError" una promesa que se rechace con el string "me han rechazado!"
-var promiseError;
+var promiseError = new Promise((resolve, reject) => reject('me han rechazado'));
 
 // 3. Dada la función "resolvePasta", completa la función "getPasta" para que invoque a
 // la función "resolvePasta" con el argumento "pasta" y luego la resuelva (.then) invocando
@@ -11,6 +11,7 @@ const resolvePasta = (pasta) => new Promise((resolve) => resolve(pasta));
 
 const getPasta = (pasta) => {
   // Completa el código ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
+  resolvePasta(pasta).then((respuesta) => console.log(respuesta));
   // Completa el código ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆
 };
 
@@ -25,11 +26,12 @@ const addAnimals = () => {
     (animals) =>
       new Promise((resolve) => {
         // Completa el código ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
+        animals.push('tiger')
+        resolve(animals)
         // Completa el código ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆
       })
-  );
+  ).then((response) => console.log(response));
   // Completa el código ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
-
   // Completa el código ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆
 };
 
@@ -40,10 +42,14 @@ const addAnimals = () => {
 const extraPromise = (isResolved) => {
   var promise = new Promise((resolve, reject) => {
     // Completa el código ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
+    if (isResolved) resolve('estoy resuelto')
+    else reject('he sido rechazado')
     // Completa el código ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆
-  });
+  })
   // Completa el código ⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇⬇
-
+  return promise
+    .then(response => console.log(response))
+    .catch(err => console.log(err))
   // Completa el código ⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆⬆
 };
 
